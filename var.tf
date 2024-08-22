@@ -1,12 +1,12 @@
 variable "subscription-id" {
   type = string
-  default = "0000000000000"
+  default = "5d1e2f23-087b-4c4c-ac5d-6df64ba47c69"
 }
 
 #virtual network variables
 variable "region" {
   type = string
-  default = "japaneast"
+  default = "francecentral"
 }
 
 variable "ip-prefix" {
@@ -17,7 +17,7 @@ variable "ip-prefix" {
 
 variable "storage-account" {
   type = string
-  default = "acadifytest"
+  default = "vigiestorage"
 }
 
 variable "storage-account-container" {
@@ -27,17 +27,17 @@ variable "storage-account-container" {
 
 variable "redis" {
   type = string
-  default = "acadifyredis"
+  default = "vigie-redis"
 }
 
 variable "psql-flexible" {
   type = string
-  default = "acadifypsql"
+  default = "vigie-psql"
 }
 
 variable "pgsql-user" {
   type = string
-  default = "user"
+  default = "postgres"
 }
 
 variable "pgsql-password" {
@@ -57,25 +57,32 @@ variable "aca-loga" {
 
 variable "aca-cert-path" {
   type = string
-  default = "./certs/difycert.pfx"
+  default = "/Users/gardille/Development/dify-azure-terraform/certs/*.vigie.ai_private_key.pfx"
 }
 
 variable "aca-cert-password" {
   type = string
-  default = "password"
+  default = "Dechiktorren92!"
 }
 
 variable "aca-dify-customer-domain" {
   type = string
-  default = "dify.nikadwang.com"
+  default = "dashboard.vigie.ai"
 }
 
+#default = "langgenius/dify-api:latest"
 variable "dify-api-image" {
   type = string
-  default = "langgenius/dify-api:0.6.11"
+  default = "arnaudvigieai/vigie-api:latest"
+}
+
+#default = "langgenius/dify-web:latest"
+variable "dify-web-image" {
+  type = string
+  default = "arnaudvigieai/vigie-web:latest"
 }
 
 variable "dify-sandbox-image" {
   type = string
-  default = "langgenius/dify-sandbox:0.2.1"
+  default = "langgenius/dify-sandbox:latest"
 }

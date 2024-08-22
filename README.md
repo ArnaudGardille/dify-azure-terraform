@@ -128,3 +128,52 @@ This document provides detailed descriptions of the variables used in the Terraf
 - **Variable Name**: `dify-web-image`
 - **Type**: `string`
 - **Default Value**: `langgenius/dify-web:0.6.11`
+
+
+
+min_replicas in aca-env.tf
+
+
+Usage
+Clone this repository
+
+Edit terraform.tfvars to set your variables
+
+Edit backend.tf to set your S3 bucket and DynamoDB table
+
+Run terraform init
+
+Runterraform plan
+
+Runterraform apply -target aws_rds_cluster_instance.dify
+
+Execute the following SQL in the RDS cluster
+
+CREATE ROLE dify WITH LOGIN PASSWORD 'your-password';
+GRANT dify TO postgres;
+CREATE DATABASE dify WITH OWNER dify;
+\c dify
+CREATE EXTENSION vector;
+Runterraform apply
+
+Run terraform apply again, if task is not started
+
+Once the build is complete and all ECS tasks have been started, dify_urlaccess Output.
+
+
+az login
+az containerapp exec \                                               
+  --name api \
+  --resource-group rg-francecentral \
+  --container langgenius \   
+  --command "curl -o /app/add_tenant.py https://vigiestorage.file.core.windows.net/scripts/list_workspaces.py"
+
+
+  az containerapp logs show --name api --resource-group rg-francecentral --container langgenius
+
+
+az containerapp exec \
+  --name api \
+  --resource-group rg-francecentral \
+  --container langgenius \
+  --command "curl -v http://localhost:8000/general/v0/general"

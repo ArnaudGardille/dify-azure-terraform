@@ -53,7 +53,7 @@ resource "azurerm_container_app" "nginx" {
       concurrent_requests = "10"
     }
     max_replicas = 10
-    min_replicas = 0
+    min_replicas = 1
     container {
       name   = "nginx"
       image  = "nginx:latest"
@@ -240,8 +240,8 @@ resource "azurerm_container_app" "worker" {
     container {
       name   = "langgenius"
       image  = var.dify-api-image
-      cpu    = 2
-      memory = "4Gi"
+      cpu    = 1
+      memory = "2Gi"
       env {
         name  = "MODE"
         value = "worker"
@@ -372,12 +372,12 @@ resource "azurerm_container_app" "api" {
       concurrent_requests = "10"
     }
     max_replicas = 10
-    min_replicas = 0
+    min_replicas = 1
     container {
       name   = "langgenius"
       image  = var.dify-api-image
-      cpu    = 2
-      memory = "4Gi"
+      cpu    = 1
+      memory = "2Gi"
       env {
         name  = "MODE"
         value = "api"
@@ -639,10 +639,10 @@ resource "azurerm_container_app" "web" {
       concurrent_requests = "10"
     }
     max_replicas = 10
-    min_replicas = 0
+    min_replicas = 1
     container {
       name   = "langgenius"
-      image  = "langgenius/dify-web:0.6.11"
+      image  = var.dify-web-image
       cpu    = 1
       memory = "2Gi"
        env {
